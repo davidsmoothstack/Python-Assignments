@@ -1,5 +1,5 @@
-def add(numList):
+def add(*numList):
     return sum(numList)
 
 
-print(add([1, 2, 3, 4, 5]))
+print(add(1, 2, 3, 4, 5))
