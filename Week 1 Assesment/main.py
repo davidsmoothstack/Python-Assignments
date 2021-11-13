@@ -48,7 +48,7 @@ def get_month_year_from_file(file_path) -> MonthYear:
 
 
 # TODO: Use the year
-def get_rolling_MoM(file_path, month, year):
+def get_summary_rolling_MoM(file_path, month, year):
     sheet = get_sheet(file_path, "Summary Rolling MoM")
     date_col_name = sheet.keys()[0]
     date_col = sheet[date_col_name]
@@ -80,7 +80,7 @@ def get_VOC_rolling_MoM(file_path, month, year):
 # TODO: Get file path from user input
 month, year = get_month_year_from_file(sheet_path)
 
-rolling_MoM = get_rolling_MoM(sheet_path, month, year)
+rolling_MoM = get_summary_rolling_MoM(sheet_path, month, year)
 logger.log_rolling_MoM(rolling_MoM)
 
 voc_rolling_MoM = get_VOC_rolling_MoM(sheet_path, month, year)
