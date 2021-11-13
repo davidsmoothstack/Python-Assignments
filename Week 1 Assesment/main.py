@@ -45,7 +45,7 @@ def get_month_year_from_file(file_path) -> MonthYear:
             f"Could not get the month or year from file: {file_path}")
         exit(1)
 
-    return result.group("month"), result.group("year")
+    return MonthYear(result.group("month"), result.group("year"))
 
 
 # TODO: Use the year
@@ -66,7 +66,7 @@ def get_rolling_MoM(file_path, month, year):
     return sheet
 
 
-def get_VOC_rolling_MoM(file_path, month, year) -> RollingMoMData:
+def get_VOC_rolling_MoM(file_path, month, year):
     sheet = get_sheet(file_path, "VOC Rolling MoM")
     date = parse_date(month, year)
 
