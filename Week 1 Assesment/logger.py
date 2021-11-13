@@ -11,7 +11,7 @@ def log_summary_rolling_MoM(data: SummaryMoMData):
         f"Abandoned After 30s {data.abandoned_after_30s}\n"
         f"FCR {data.fcr}\n"
         f"DSAT {data.dsat}\n"
-        f"CSAT {data.csat}"
+        f"CSAT {data.csat}\n"
     )
 
 
@@ -23,5 +23,5 @@ def log_VOC_rolling_MoM(data: RollingMoMData):
     print(
         f"Promoters {promoter_score}\n"
         f"Passives {passive_score}\n"
-        f"Decractors {decractor_score}"
+        f"Decractors {decractor_score}\n"
     )
