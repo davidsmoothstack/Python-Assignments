@@ -1,5 +1,4 @@
 import re
-import sys
 from datetime import date, datetime
 
 import pandas as pd
@@ -82,7 +81,7 @@ def get_VOC_rolling_MoM(file_path, month, year):
 month, year = get_month_year_from_file(sheet_path)
 
 rolling_MoM = get_rolling_MoM(sheet_path, month, year)
-# logger.log_rolling_MoM(rolling_MoM)
+logger.log_rolling_MoM(rolling_MoM)
 
 voc_rolling_MoM = get_VOC_rolling_MoM(sheet_path, month, year)
 logger.log_VOC_rolling_MoM(voc_rolling_MoM)
