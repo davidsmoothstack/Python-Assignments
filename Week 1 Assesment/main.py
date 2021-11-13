@@ -8,7 +8,7 @@ from pandas._libs.tslibs.timestamps import Timestamp
 from pandas.core.frame import DataFrame
 
 import logger
-from my_types import MonthYear, RollingMoMData
+from my_types import MonthYear, RollingMoMData, SummaryMoMData
 
 sheet_names = ["Summary Rolling Mom",
                "VOC Rolling MoM",
@@ -47,27 +47,30 @@ def get_month_year_from_file(file_path) -> MonthYear:
     return MonthYear(result.group("month"), result.group("year"))
 
 
-# TODO: Use the year
-def get_summary_rolling_MoM(file_path, month, year):
+def get_summary_rolling_MoM(file_path):
+    # Assume the only month without a year is the latest
+    # If more than one month without year throw
     sheet = get_sheet(file_path, "Summary Rolling MoM")
     date_col_name = sheet.keys()[0]
     date_col = sheet[date_col_name]
 
-    # TODO: Clean up
+    fileMonth, fileYear = get_month_year_from_file(file_path)
+    fileDate = parse_date(fileMonth, fileYear)
+
     for i, timestamp in enumerate(date_col):
         try:
-            # TODO: Remove magic number
-            if timestamp.month == 1:
-                return sheet.iloc[i, 1:6]
+            if timestamp.month == fileDate.month and timestamp.year == fileDate.year:
+                # Skip the first column and spread the rest int oSummaryMoMData
+                return SummaryMoMData(*sheet.iloc[i][1::])
         except:
             continue
 
-    return sheet
 
-
-def get_VOC_rolling_MoM(file_path, month, year):
+def get_VOC_rolling_MoM(file_path):
     sheet = get_sheet(file_path, "VOC Rolling MoM")
-    date = parse_date(month, year)
+
+    fileMonth, fileYear = get_month_year_from_file(file_path)
+    date = parse_date(fileMonth, fileYear)
 
     # TODO: Make dynamic?
     promoters = sheet[date].get(2)
@@ -80,8 +83,8 @@ def get_VOC_rolling_MoM(file_path, month, year):
 # TODO: Get file path from user input
 month, year = get_month_year_from_file(sheet_path)
 
-rolling_MoM = get_summary_rolling_MoM(sheet_path, month, year)
+rolling_MoM = get_summary_rolling_MoM(sheet_path)
 logger.log_summary_rolling_MoM(rolling_MoM)
 
-voc_rolling_MoM = get_VOC_rolling_MoM(sheet_path, month, year)
+voc_rolling_MoM = get_VOC_rolling_MoM(sheet_path)
 logger.log_VOC_rolling_MoM(voc_rolling_MoM)

@@ -1,12 +1,18 @@
-from my_types import RollingMoMData
+from my_types import RollingMoMData, SummaryMoMData
 
 
 def log_message(message):
     print(message)
 
 
-def log_summary_rolling_MoM(data):
-    print(data)
+def log_summary_rolling_MoM(data: SummaryMoMData):
+    print(
+        f"Calls Offered {data.calls_offered}\n"
+        f"Abandoned After 30s {data.abandoned_after_30s}\n"
+        f"FCR {data.fcr}\n"
+        f"DSAT {data.dsat}\n"
+        f"CSAT {data.csat}"
+    )
 
 
 def log_VOC_rolling_MoM(data: RollingMoMData):
