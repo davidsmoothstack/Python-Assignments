@@ -9,7 +9,7 @@ from pandas._libs.tslibs.timestamps import Timestamp
 from pandas.core.frame import DataFrame
 
 import logger
-from my_types import RollingMoMData
+from my_types import MonthYear, RollingMoMData
 
 sheet_names = ["Summary Rolling Mom",
                "VOC Rolling MoM",
@@ -36,7 +36,7 @@ def parse_date(month, year):
         exit(1)
 
 
-def get_month_year_from_file(file_path):
+def get_month_year_from_file(file_path) -> MonthYear:
     pattern = ".*_(?P<month>.*)_(?P<year>.*?)\.xlsx"
     result = re.search(pattern, file_path)
 
@@ -75,7 +75,7 @@ def get_VOC_rolling_MoM(file_path, month, year) -> RollingMoMData:
     passives = sheet[date].get(4)
     dectractors = sheet[date].get(6)
 
-    return (promoters, passives, dectractors)
+    return RollingMoMData(promoters, passives, dectractors)
 
 
 # TODO: Get file path from user input
@@ -85,4 +85,4 @@ rolling_MoM = get_rolling_MoM(sheet_path, month, year)
 # logger.log_rolling_MoM(rolling_MoM)
 
 voc_rolling_MoM = get_VOC_rolling_MoM(sheet_path, month, year)
-# logger.log_VOC_rolling_MoM(voc_rolling_MoM)
+logger.log_VOC_rolling_MoM(voc_rolling_MoM)
