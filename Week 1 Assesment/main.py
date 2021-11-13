@@ -58,10 +58,10 @@ def get_summary_rolling_MoM(file_path):
     fileDate = parse_date(fileMonth, fileYear)
 
     # TODO: Filter out non timestamps
-    for i, timestamp in enumerate(date_col):
-        if timestamp.month == fileDate.month and timestamp.year == fileDate.year:
+    for row_index, row_date in enumerate(date_col):
+        if row_date.month == fileDate.month and row_date.year == fileDate.year:
             # Skip the first column and spread the rest int oSummaryMoMData
-            return SummaryMoMData(*sheet.iloc[i][1::])
+            return SummaryMoMData(*sheet.iloc[row_index][1::])
 
     logger.log_message("Could not find corresponding month in excel file")
     exit(1)
