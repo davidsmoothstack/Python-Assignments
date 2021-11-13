@@ -5,7 +5,7 @@ def log_message(message):
     print(message)
 
 
-def log_rolling_MoM(data):
+def log_summary_rolling_MoM(data):
     print(data)
 
 
