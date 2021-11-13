@@ -1,3 +1,4 @@
+import logging
 import re
 from datetime import date, datetime
 
@@ -21,7 +22,7 @@ sheet_path = "Week 1 Assesment/in/expedia_report_monthly_january_2018.xlsx"
 def get_sheet(file_path, sheet_name):
     with pd.ExcelFile(file_path) as xlsx:
         if sheet_name not in xlsx.sheet_names:
-            logger.log_message(f"Failed to load sheet: {sheet_name}")
+            logging.error(f"Failed to load sheet: {sheet_name}")
             exit(1)
 
         return pd.read_excel(xlsx, sheet_name)
@@ -31,7 +32,7 @@ def parse_date(month, year):
     try:
         return datetime.strptime(f"{month} {year}", "%B %Y")
     except:
-        logger.log_message("Could not parse date")
+        logging.error("Could not parse date")
         exit(1)
 
 
@@ -40,7 +41,7 @@ def get_month_year_from_file(file_path) -> MonthYear:
     result = re.search(pattern, file_path)
 
     if result == None:
-        logger.log_message(
+        logging.error(
             f"Could not get the month or year from file: {file_path}")
         exit(1)
 
@@ -63,7 +64,7 @@ def get_summary_rolling_MoM(file_path):
             # Skip the first column and spread the rest int oSummaryMoMData
             return SummaryMoMData(*sheet.iloc[row_index][1::])
 
-    logger.log_message("Could not find corresponding month in excel file")
+    logging.error("Could not find corresponding month in excel file")
     exit(1)
 
 
