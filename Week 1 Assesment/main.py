@@ -41,6 +41,7 @@ def get_VOC(file_path):
     fileMonth, fileYear = util.get_month_year_from_file(file_path)
     col_date = util.parse_date(fileMonth, fileYear)
 
+    # Use the month string from file if the date column does not exist
     month_col = sheet[col_date] if col_date in sheet else sheet[fileMonth.title()]
 
     promoters = month_col.get(2)
@@ -53,9 +54,6 @@ def get_VOC(file_path):
 if __name__ == "__main__":
     try:
         sheet_path = util.get_console_input()
-
-        # TODO: Get file path from user input
-        month, year = util.get_month_year_from_file(sheet_path)
 
         summary = get_summary(sheet_path)
         logger.log_summary(summary)
