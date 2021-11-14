@@ -20,7 +20,7 @@ def get_summary_data(file_path):
     file_date = util.get_date_from_file_name(file_path)
 
     for row_index, row_date in enumerate(date_col):
-        if row_date.month == file_date.month and row_date.year == file_date.year:
+        if (row_date.month, row_date.year) == (file_date.month, file_date.year):
             # Iterate through row data then store in a SummaryData named tuple
             return SummaryData(*sheet.iloc[row_index][0::])
 
@@ -55,5 +55,5 @@ if __name__ == "__main__":
 
         logger.log_summary_data(summary_data)
         logger.log_VOC_data(voc_data)
-    except:
-        logging.critical(traceback.format_exception_only())
+    except Exception as e:
+        logging.critical(traceback.format_exception_only(type(e), e))
