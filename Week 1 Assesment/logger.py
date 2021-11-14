@@ -6,13 +6,13 @@ from logging import FileHandler, StreamHandler
 import util
 from my_types import SummaryData, VOCData
 
-format = "[%(asctime)s] %(message)s"
-date_format = "%b %d %Y %X"
+logging_format = "[%(asctime)s] %(message)s"
+logging_date_format = "%b %d %Y %X"
 
 logging.basicConfig(
     level=logging.DEBUG,
-    format=format,
-    datefmt=date_format,
+    format=logging_format,
+    datefmt=logging_date_format,
     handlers=[
         FileHandler("logs.txt"),
         StreamHandler(sys.stdout)
