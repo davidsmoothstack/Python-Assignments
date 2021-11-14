@@ -24,6 +24,7 @@ def get_summary(file_path):
 
     for row_index, row_date in enumerate(date_col):
         if row_date.month == file_date.month and row_date.year == file_date.year:
+            # Iterate through row data then store in a SummaryData named tuple
             return SummaryData(*sheet.iloc[row_index][0::])
 
     logging.error("Could not find corresponding month in excel file")
