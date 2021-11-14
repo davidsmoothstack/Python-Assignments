@@ -8,7 +8,7 @@ import util
 from my_types import SummaryData, VOCData
 
 
-def get_summary(file_path):
+def get_summary_data(file_path):
     logging.debug(f"Parsing summary from {file_path}")
 
     sheet = util.get_sheet(file_path, "Summary Rolling MoM")
@@ -28,7 +28,7 @@ def get_summary(file_path):
     exit(1)
 
 
-def get_VOC(file_path):
+def get_VOC_data(file_path):
     logging.debug(f"Parsing VOC from {file_path}")
 
     sheet = util.get_sheet(file_path, "VOC Rolling MoM")
@@ -50,8 +50,8 @@ if __name__ == "__main__":
     try:
         sheet_path = util.get_console_input()
 
-        summary_data = get_summary(sheet_path)
-        voc_data = get_VOC(sheet_path)
+        summary_data = get_summary_data(sheet_path)
+        voc_data = get_VOC_data(sheet_path)
 
         logger.log_summary_data(summary_data)
         logger.log_VOC_data(voc_data)
