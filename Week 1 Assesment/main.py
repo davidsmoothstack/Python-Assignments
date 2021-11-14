@@ -12,18 +12,16 @@ def get_summary_data(file_path):
     """
     logging.debug(f"Parsing summary from {file_path}")
 
-    sheet = util.get_sheet(file_path, "Summary Rolling MoM")
+    excel = util.get_sheet(file_path, "Summary Rolling MoM")
 
-    # Get the name of the first unnamed column
-    date_col_name = sheet.keys()[0]
-    date_col = sheet[date_col_name]
-
+    # sheet.keys()[0] Gets a reference to the first unnamed column
+    date_col = excel[excel.keys()[0]]
     file_date = util.get_file_datetime(file_path)
 
     for row_index, row_date in enumerate(date_col):
         if (row_date.month, row_date.year) == (file_date.month, file_date.year):
             # Add then return all row columns wrapped in a SummaryData tuple
-            return SummaryData(*sheet.iloc[row_index][0::])
+            return SummaryData(*excel.iloc[row_index][0::])
 
     logging.error("Could not find corresponding month in excel file")
     exit(1)
@@ -36,17 +34,17 @@ def get_VOC_data(file_path):
     """
     logging.debug(f"Parsing VOC from {file_path}")
 
-    sheet = util.get_sheet(file_path, "VOC Rolling MoM")
-
     fileMonth, fileYear = util.get_file_monthyear(file_path)
     col_date = util.get_datetime(fileMonth, fileYear)
 
-    # Use the month string from file if the date column does not exist
-    month_col = sheet[col_date] if col_date in sheet else sheet[fileMonth.title()]
+    excel = util.get_sheet(file_path, "VOC Rolling MoM")
 
-    promoters = month_col.get(2)
-    passives = month_col.get(4)
-    dectractors = month_col.get(6)
+    # Use the month string from file if the date column does not exist
+    target_col = excel[col_date] if col_date in excel else excel[fileMonth.title()]
+
+    promoters = target_col.get(2)
+    passives = target_col.get(4)
+    dectractors = target_col.get(6)
 
     return VOCData(col_date, promoters, passives, dectractors)
 
