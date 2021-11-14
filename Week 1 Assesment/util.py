@@ -21,7 +21,7 @@ def get_console_input():
     args = sys.argv
 
     if len(args) != 2:
-        logging.error("Incorrent amount of arguments")
+        logging.error("Incorrect amount of arguments")
         exit(1)
 
     if not pathlib.Path(args[1]).is_file:
