@@ -60,6 +60,6 @@ def get_month_year_from_file(file_path) -> MonthYear:
     return MonthYear(result.group("month"), result.group("year"))
 
 
-def get_date_from_file(file_path):
+def get_date_from_file_name(file_path):
     file_month, file_year = get_month_year_from_file(file_path)
     return parse_date(file_month, file_year)

@@ -20,7 +20,6 @@ logging.basicConfig(
 
 
 def log_summary(data: SummaryData):
-    # TODO: Show percents
     logging.info(
         f"\nCalls Offered {data.calls_offered}\n"
         f"Abandoned After 30s {util.to_percent(data.abandoned_after_30s)}\n"

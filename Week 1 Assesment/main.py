@@ -20,7 +20,7 @@ def get_summary(file_path):
     date_col_name = sheet.keys()[0]
     date_col = sheet[date_col_name]
 
-    file_date = util.get_date_from_file(file_path)
+    file_date = util.get_date_from_file_name(file_path)
 
     # TODO: Filter out non timestamps
     for row_index, row_date in enumerate(date_col):
@@ -55,11 +55,11 @@ if __name__ == "__main__":
     try:
         sheet_path = util.get_console_input()
 
-        summary = get_summary(sheet_path)
-        logger.log_summary(summary)
+        summary_data = get_summary(sheet_path)
+        logger.log_summary(summary_data)
 
-        voc = get_VOC(sheet_path)
-        logger.log_VOC(voc)
+        voc_data = get_VOC(sheet_path)
+        logger.log_VOC(voc_data)
     except:
         e = sys.exc_info()[0]
         logging.error(e.__name__)
