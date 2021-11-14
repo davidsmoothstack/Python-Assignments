@@ -89,11 +89,12 @@ def get_VOC_rolling_MoM(file_path):
     return RollingMoMData(promoters, passives, dectractors)
 
 
-# TODO: Get file path from user input
-month, year = get_month_year_from_file(sheet_path)
+if __name__ == "__main__":
+    # TODO: Get file path from user input
+    month, year = get_month_year_from_file(sheet_path)
 
-rolling_MoM = get_summary_rolling_MoM(sheet_path)
-logger.log_summary_rolling_MoM(rolling_MoM)
+    rolling_MoM = get_summary_rolling_MoM(sheet_path)
+    logger.log_summary_rolling_MoM(rolling_MoM)
 
-voc_rolling_MoM = get_VOC_rolling_MoM(sheet_path)
-logger.log_VOC_rolling_MoM(voc_rolling_MoM)
+    voc_rolling_MoM = get_VOC_rolling_MoM(sheet_path)
+    logger.log_VOC_rolling_MoM(voc_rolling_MoM)
