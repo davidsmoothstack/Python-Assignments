@@ -34,7 +34,7 @@ def get_VOC_data(file_path):
     sheet = util.get_sheet(file_path, "VOC Rolling MoM")
 
     fileMonth, fileYear = util.get_month_year_from_file_name(file_path)
-    col_date = util.parse_date(fileMonth, fileYear)
+    col_date = util.get_datetime(fileMonth, fileYear)
 
     # Use the month string from file if the date column does not exist
     month_col = sheet[col_date] if col_date in sheet else sheet[fileMonth.title()]

@@ -38,7 +38,7 @@ def get_sheet(file_path, sheet_name):
         return pd.read_excel(xlsx, sheet_name)
 
 
-def parse_date(month, year):
+def get_datetime(month, year):
     try:
         logging.debug(f"parse_date with month: \"{month}\" year: \"{year}\"")
         return datetime.strptime(f"{month} {year}", "%B %Y")
@@ -62,4 +62,4 @@ def get_month_year_from_file_name(file_path) -> MonthYear:
 
 def get_date_from_file_name(file_path):
     file_month, file_year = get_month_year_from_file_name(file_path)
-    return parse_date(file_month, file_year)
+    return get_datetime(file_month, file_year)
