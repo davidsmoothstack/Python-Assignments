@@ -1,8 +1,22 @@
 import logging
 
+import pandas as pd
+
 import logger
 import util
 from my_types import SummaryData, VOCData
+
+
+def get_sheet(file_path, sheet_name):
+    """Returns an excel sheet from the specified file"""
+    logging.debug(f"Loading up {file_path} with sheet name {sheet_name}")
+
+    with pd.ExcelFile(file_path) as xlsx:
+        if sheet_name not in xlsx.sheet_names:
+            logging.error(f"Failed to load sheet: {sheet_name}")
+            exit(1)
+
+        return pd.read_excel(xlsx, sheet_name)
 
 
 def get_summary_data(file_path):
