@@ -12,11 +12,15 @@ from my_types import MonthYear
 def get_console_input():
     args = sys.argv
 
-    if pathlib.Path(args[1]).is_file:
-        return args[1]
+    if len(args) != 2:
+        logging.error("Incorrent amount of arguments")
+        exit(1)
 
-    logging.error(f"File does not exist: {args}")
-    exit(1)
+    if not pathlib.Path(args[1]).is_file:
+        logging.error(f"File does not exist: {args}")
+        exit(1)
+
+    return args[1]
 
 
 def get_sheet(file_path, sheet_name):

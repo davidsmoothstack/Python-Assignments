@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime
+import sys
 
 import logger
 import util
@@ -50,12 +51,17 @@ def get_VOC_rolling_MoM(file_path):
 
 
 if __name__ == "__main__":
-    sheet_path = util.get_console_input()
-    # TODO: Get file path from user input
-    month, year = util.get_month_year_from_file(sheet_path)
+    try:
+        sheet_path = util.get_console_input()
 
-    rolling_MoM = get_summary_rolling_MoM(sheet_path)
-    logger.log_summary_rolling_MoM(rolling_MoM)
+        # TODO: Get file path from user input
+        month, year = util.get_month_year_from_file(sheet_path)
 
-    voc_rolling_MoM = get_VOC_rolling_MoM(sheet_path)
-    logger.log_VOC_rolling_MoM(voc_rolling_MoM)
+        rolling_MoM = get_summary_rolling_MoM(sheet_path)
+        logger.log_summary_rolling_MoM(rolling_MoM)
+
+        voc_rolling_MoM = get_VOC_rolling_MoM(sheet_path)
+        logger.log_VOC_rolling_MoM(voc_rolling_MoM)
+    except:
+        e = sys.exc_info()[0]
+        logging.error(e.__name__)
