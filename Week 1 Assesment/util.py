@@ -10,7 +10,7 @@ from my_types import MonthYear
 
 
 def to_percent(float):
-    return f"{float * 100}%"
+    return "{:.2%}".format(float)
 
 
 def get_console_input():

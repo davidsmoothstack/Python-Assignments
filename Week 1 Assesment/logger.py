@@ -23,11 +23,11 @@ logging.basicConfig(
 def log_summary_data(data: SummaryData):
     logging.info(
         f"Summary for {data.date.strftime('%B %Y')}: \n"
-        f"Calls Offered {data.calls_offered}\n"
-        f"Abandoned After 30s {util.to_percent(data.abandoned_after_30s)}\n"
-        f"FCR {util.to_percent(data.fcr)}\n"
-        f"DSAT {util.to_percent(data.dsat)}%\n"
-        f"CSAT {util.to_percent(data.csat)}\n"
+        f"Calls Offered: {data.calls_offered}\n"
+        f"Abandoned After: {util.to_percent(data.abandoned_after_30s)}\n"
+        f"FCR: {util.to_percent(data.fcr)}\n"
+        f"DSAT: {util.to_percent(data.dsat)}\n"
+        f"CSAT: {util.to_percent(data.csat)}\n"
     )
 
 
