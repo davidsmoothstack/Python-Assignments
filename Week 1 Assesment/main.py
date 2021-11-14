@@ -16,7 +16,7 @@ def get_summary_rolling_MoM(file_path):
 
     sheet = util.get_sheet(file_path, "Summary Rolling MoM")
 
-    # Get the name of the first column
+    # Get the name of the first unnamed column
     date_col_name = sheet.keys()[0]
     date_col = sheet[date_col_name]
 
