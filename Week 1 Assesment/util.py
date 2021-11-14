@@ -21,7 +21,7 @@ def get_console_input():
         exit(1)
 
     if not pathlib.Path(args[1]).is_file:
-        logging.error(f"File does not exist: {args}")
+        logging.error(f"File does not exist: {args[1]}")
         exit(1)
 
     return args[1]
