@@ -9,8 +9,12 @@ import pandas as pd
 from my_types import MonthYear
 
 
-def to_percent(float):
+def percent_format(float):
     return "{:.2%}".format(float)
+
+
+def comma_format(number):
+    return "{:,.0f}".format(number)
 
 
 def get_console_input():
