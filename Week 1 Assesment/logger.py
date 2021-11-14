@@ -18,14 +18,18 @@ logging.basicConfig(
 )
 
 
+def to_percent(float):
+    return f"{float * 100}%"
+
+
 def log_summary_rolling_MoM(data: SummaryMoMData):
     # TODO: Show percents
     logging.info(
         f"\nCalls Offered {data.calls_offered}\n"
-        f"Abandoned After 30s {data.abandoned_after_30s}\n"
-        f"FCR {data.fcr}\n"
-        f"DSAT {data.dsat}\n"
-        f"CSAT {data.csat}\n"
+        f"Abandoned After 30s {to_percent(data.abandoned_after_30s)}\n"
+        f"FCR {to_percent(data.fcr)}\n"
+        f"DSAT {to_percent(data.dsat)}%\n"
+        f"CSAT {to_percent(data.csat)}\n"
     )
 
 
