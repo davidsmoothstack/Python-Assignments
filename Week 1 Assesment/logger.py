@@ -3,7 +3,7 @@ import sys
 from logging import FileHandler, StreamHandler
 
 import util
-from my_types import RollingMoMData, SummaryMoMData
+from my_types import VOCData, SummaryData
 
 format = "[%(asctime)s] %(message)s"
 date_format = "%b %d %Y %X"
@@ -19,7 +19,7 @@ logging.basicConfig(
 )
 
 
-def log_summary_rolling_MoM(data: SummaryMoMData):
+def log_summary(data: SummaryData):
     # TODO: Show percents
     logging.info(
         f"\nCalls Offered {data.calls_offered}\n"
@@ -30,7 +30,7 @@ def log_summary_rolling_MoM(data: SummaryMoMData):
     )
 
 
-def log_VOC_rolling_MoM(data: RollingMoMData):
+def log_VOC(data: VOCData):
     promoter_score = "good" if data.promoters > 200 else "bad"
     passive_score = "good" if data.passives > 100 else "bad"
     decractor_score = "good" if data.dectractors > 100 else "bad"

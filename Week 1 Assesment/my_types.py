@@ -1,11 +1,11 @@
 from collections import namedtuple
 
 
-RollingMoMData = namedtuple(
-    "RollingMoMData", ["promoters", "passives", "dectractors"])
+VOCData = namedtuple(
+    "VOCData", ["promoters", "passives", "dectractors"])
 
-SummaryMoMData = namedtuple(
-    "SummaryMoMData",
+SummaryData = namedtuple(
+    "SummaryData",
     ["calls_offered",
      "abandoned_after_30s",
      "fcr",
