@@ -77,9 +77,9 @@ def get_VOC_rolling_MoM(file_path):
     sheet = get_sheet(file_path, "VOC Rolling MoM")
 
     fileMonth, fileYear = get_month_year_from_file(file_path)
-    date = parse_date(fileMonth, fileYear)
+    col_date = parse_date(fileMonth, fileYear)
 
-    month_col = sheet[date] if date in sheet else sheet[fileMonth.title()]
+    month_col = sheet[col_date] if col_date in sheet else sheet[fileMonth.title()]
 
     # TODO: Make dynamic?
     promoters = month_col.get(2)
