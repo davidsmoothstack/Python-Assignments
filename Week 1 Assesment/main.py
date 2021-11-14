@@ -57,7 +57,7 @@ if __name__ == "__main__":
         summary_data = get_summary(sheet_path)
         voc_data = get_VOC(sheet_path)
 
-        logger.log_summary(summary_data)
-        logger.log_VOC(voc_data)
+        logger.log_summary_data(summary_data)
+        logger.log_VOC_data(voc_data)
     except:
         logging.critical(traceback.format_exception_only())

@@ -20,7 +20,7 @@ logging.basicConfig(
 )
 
 
-def log_summary(data: SummaryData):
+def log_summary_data(data: SummaryData):
     logging.info(
         f"Summary for {data.date.strftime('%B %Y')}: \n"
         f"Calls Offered {data.calls_offered}\n"
@@ -31,7 +31,7 @@ def log_summary(data: SummaryData):
     )
 
 
-def log_VOC(data: VOCData):
+def log_VOC_data(data: VOCData):
     promoter_score = "good" if data.promoters > 200 else "bad"
     passive_score = "good" if data.passives > 100 else "bad"
     decractor_score = "good" if data.dectractors > 100 else "bad"
