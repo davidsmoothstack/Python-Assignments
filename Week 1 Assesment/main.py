@@ -46,18 +46,14 @@ def get_VOC(file_path):
     passives = month_col.get(4)
     dectractors = month_col.get(6)
 
-    return VOCData(promoters, passives, dectractors)
+    return VOCData(col_date, promoters, passives, dectractors)
 
 
 if __name__ == "__main__":
-    try:
-        sheet_path = util.get_console_input()
+    sheet_path = util.get_console_input()
 
-        summary_data = get_summary(sheet_path)
-        logger.log_summary(summary_data)
+    summary_data = get_summary(sheet_path)
+    logger.log_summary(summary_data)
 
-        voc_data = get_VOC(sheet_path)
-        logger.log_VOC(voc_data)
-    except:
-        e = sys.exc_info()[0]
-        logging.error(e.__name__)
+    voc_data = get_VOC(sheet_path)
+    logger.log_VOC(voc_data)

@@ -37,7 +37,8 @@ def log_VOC(data: VOCData):
     decractor_score = "good" if data.dectractors > 100 else "bad"
 
     logging.info(
-        f"\nPromoters {promoter_score}\n"
+        f"VOC for {data.date.strftime('%B %Y')}\n"
+        f"Promoters {promoter_score}\n"
         f"Passives {passive_score}\n"
         f"Decractors {decractor_score}\n"
     )

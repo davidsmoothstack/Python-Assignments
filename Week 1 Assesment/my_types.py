@@ -2,7 +2,7 @@ from collections import namedtuple
 
 
 VOCData = namedtuple(
-    "VOCData", ["promoters", "passives", "dectractors"])
+    "VOCData", ["date", "promoters", "passives", "dectractors"])
 
 SummaryData = namedtuple(
     "SummaryData",
