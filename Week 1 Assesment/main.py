@@ -1,10 +1,11 @@
 import logging
 import sys
+import traceback
 from datetime import datetime
 
 import logger
 import util
-from my_types import VOCData, SummaryData
+from my_types import SummaryData, VOCData
 
 sheet_names = ["Summary Rolling Mom",
                "VOC Rolling MoM",
@@ -46,14 +47,17 @@ def get_VOC(file_path):
     passives = month_col.get(4)
     dectractors = month_col.get(6)
 
-    return VOCData(col_date, promoters, passives, dectractors)
+    return VOCData(dd, promoters, passives, dectractors)
 
 
 if __name__ == "__main__":
-    sheet_path = util.get_console_input()
+    try:
+        sheet_path = util.get_console_input()
 
-    summary_data = get_summary(sheet_path)
-    logger.log_summary(summary_data)
+        summary_data = get_summary(sheet_path)
+        logger.log_summary(summary_data)
 
-    voc_data = get_VOC(sheet_path)
-    logger.log_VOC(voc_data)
+        voc_data = get_VOC(sheet_path)
+        logger.log_VOC(voc_data)
+    except:
+        logging.critical("", traceback.format_exception_only())

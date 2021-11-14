@@ -1,6 +1,5 @@
 from collections import namedtuple
 
-
 VOCData = namedtuple(
     "VOCData", ["date", "promoters", "passives", "dectractors"])
 
