@@ -50,7 +50,7 @@ def get_datetime(month, year):
 
 
 def get_month_year_from_file(file_path) -> MonthYear:
-    """Generates a MonthYear tuple with a month and a year from the files name"""
+    """Generates a MonthYear tuple with a month and a year using the files name"""
     logging.debug(f"Reading month and year from {file_path}")
     pattern = ".*_(?P<month>.*)_(?P<year>.*?)\.xlsx"
     result = re.search(pattern, file_path)
@@ -64,5 +64,6 @@ def get_month_year_from_file(file_path) -> MonthYear:
 
 
 def get_datetime_from_file_name(file_path):
+    """Generates a datetime object using the month and year from the files name"""
     file_month, file_year = get_month_year_from_file(file_path)
     return get_datetime(file_month, file_year)
