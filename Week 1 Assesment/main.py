@@ -7,10 +7,6 @@ import logger
 import util
 from my_types import SummaryData, VOCData
 
-sheet_names = ["Summary Rolling Mom",
-               "VOC Rolling MoM",
-               "Monthly Verbatim Statements"]
-
 
 def get_summary(file_path):
     logging.debug(f"Parsing summary from {file_path}")
