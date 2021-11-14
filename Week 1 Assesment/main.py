@@ -25,9 +25,7 @@ def get_summary(file_path):
     # TODO: Filter out non timestamps
     for row_index, row_date in enumerate(date_col):
         if row_date.month == file_date.month and row_date.year == file_date.year:
-            # Skip the first column and spread the rest int oSummaryMoMData
-            # TODO: Take in month
-            return SummaryData(*sheet.iloc[row_index][1::])
+            return SummaryData(*sheet.iloc[row_index][0::])
 
     logging.error("Could not find corresponding month in excel file")
     exit(1)

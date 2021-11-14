@@ -6,7 +6,8 @@ VOCData = namedtuple(
 
 SummaryData = namedtuple(
     "SummaryData",
-    ["calls_offered",
+    ["date",
+     "calls_offered",
      "abandoned_after_30s",
      "fcr",
      "dsat",
