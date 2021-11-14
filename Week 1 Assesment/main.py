@@ -29,7 +29,7 @@ def get_sheet(file_path, sheet_name):
 
 def parse_date(month, year):
     try:
-        logging.debug(f"parse_date with month: {month} year {year}")
+        logging.debug(f"parse_date with month: \"{month}\" year: \"{year}\"")
         return datetime.strptime(f"{month} {year}", "%B %Y")
     except:
         logging.error("Could not parse date")
@@ -43,7 +43,7 @@ def get_month_year_from_file(file_path) -> MonthYear:
 
     if result == None:
         logging.error(
-            f"Could not get the month or year from file: {file_path}")
+            f"Could not get the month and year from file: {file_path}")
         exit(1)
 
     return MonthYear(result.group("month"), result.group("year"))
