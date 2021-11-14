@@ -1,12 +1,16 @@
 import logging
+import pathlib
 import re
 import sys
-import pathlib
 from datetime import datetime
 
 import pandas as pd
 
 from my_types import MonthYear
+
+
+def to_percent(float):
+    return f"{float * 100}%"
 
 
 def get_console_input():
