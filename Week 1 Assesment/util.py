@@ -47,7 +47,7 @@ def parse_date(month, year):
         exit(1)
 
 
-def get_month_year_from_file(file_path) -> MonthYear:
+def get_month_year_from_file_name(file_path) -> MonthYear:
     logging.debug(f"Reading month and year from {file_path}")
     pattern = ".*_(?P<month>.*)_(?P<year>.*?)\.xlsx"
     result = re.search(pattern, file_path)
@@ -61,5 +61,5 @@ def get_month_year_from_file(file_path) -> MonthYear:
 
 
 def get_date_from_file_name(file_path):
-    file_month, file_year = get_month_year_from_file(file_path)
+    file_month, file_year = get_month_year_from_file_name(file_path)
     return parse_date(file_month, file_year)
