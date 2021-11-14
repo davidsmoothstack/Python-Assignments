@@ -1,11 +1,10 @@
 import logging
 import sys
-from datetime import date, datetime
-from logging import FileHandler, Formatter, Logger, StreamHandler
+from logging import FileHandler, StreamHandler
 
 from my_types import RollingMoMData, SummaryMoMData
 
-format = "[%(asctime)s] %(message)s %(message)s"
+format = "[%(asctime)s] %(message)s"
 date_format = "%b %d %Y %X"
 
 logging.basicConfig(
