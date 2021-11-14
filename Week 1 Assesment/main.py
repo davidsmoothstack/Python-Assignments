@@ -8,7 +8,7 @@ from my_types import SummaryData, VOCData
 
 
 def get_sheet(file_path, sheet_name):
-    """Returns an excel sheet from the specified file"""
+    """Returns an excel sheet in the form of a list of DataFrames from the specified file"""
     logging.debug(f"Loading up {file_path} with sheet name {sheet_name}")
 
     with pd.ExcelFile(file_path) as xlsx:
@@ -26,7 +26,7 @@ def get_summary_data(file_path):
     """
     logging.debug(f"Parsing summary from {file_path}")
 
-    excel = util.get_sheet(file_path, "Summary Rolling MoM")
+    excel = get_sheet(file_path, "Summary Rolling MoM")
 
     # sheet.keys()[0] Gets a reference to the first unnamed column
     date_col = excel[excel.keys()[0]]
@@ -51,7 +51,7 @@ def get_VOC_data(file_path):
     fileMonth, fileYear = util.get_file_monthyear(file_path)
     col_date = util.get_datetime(fileMonth, fileYear)
 
-    excel = util.get_sheet(file_path, "VOC Rolling MoM")
+    excel = get_sheet(file_path, "VOC Rolling MoM")
 
     # Use the month string from file if the date column does not exist
     target_col = excel[col_date] if col_date in excel else excel[fileMonth.title()]

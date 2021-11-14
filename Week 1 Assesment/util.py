@@ -54,6 +54,6 @@ def get_file_monthyear(file_path) -> MonthYear:
 
 
 def get_file_datetime(file_path):
-    """Returns a datetime object using the month and year from provided the file name"""
+    """Returns a datetime object using the month and year from the provided file name"""
     file_month, file_year = get_file_monthyear(file_path)
     return get_datetime(file_month, file_year)
