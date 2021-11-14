@@ -28,6 +28,7 @@ def get_console_input():
 
 
 def get_sheet(file_path, sheet_name):
+    """Returns an excel sheet from the specified file"""
     logging.debug(f"Loading up {file_path} with sheet name {sheet_name}")
 
     with pd.ExcelFile(file_path) as xlsx:
@@ -39,6 +40,7 @@ def get_sheet(file_path, sheet_name):
 
 
 def get_datetime(month, year):
+    """Generates a datetime object from the provided month and year"""
     try:
         logging.debug(f"parse_date with month: \"{month}\" year: \"{year}\"")
         return datetime.strptime(f"{month} {year}", "%B %Y")
@@ -47,7 +49,8 @@ def get_datetime(month, year):
         exit(1)
 
 
-def get_month_year_from_file_name(file_path) -> MonthYear:
+def get_month_year_from_file(file_path) -> MonthYear:
+    """Generates a MonthYear tuple with a month and a year from the files name"""
     logging.debug(f"Reading month and year from {file_path}")
     pattern = ".*_(?P<month>.*)_(?P<year>.*?)\.xlsx"
     result = re.search(pattern, file_path)
@@ -61,5 +64,5 @@ def get_month_year_from_file_name(file_path) -> MonthYear:
 
 
 def get_datetime_from_file_name(file_path):
-    file_month, file_year = get_month_year_from_file_name(file_path)
+    file_month, file_year = get_month_year_from_file(file_path)
     return get_datetime(file_month, file_year)

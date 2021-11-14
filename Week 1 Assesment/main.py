@@ -9,6 +9,10 @@ from my_types import SummaryData, VOCData
 
 
 def get_summary_data(file_path):
+    """Returns a SummaryData named tuple that contains data from the "Summary Rolling MoM" sheet
+
+    This function determines the column to read from based on the month and year provided by the file name itself
+    """
     logging.debug(f"Parsing summary from {file_path}")
 
     sheet = util.get_sheet(file_path, "Summary Rolling MoM")
@@ -29,11 +33,15 @@ def get_summary_data(file_path):
 
 
 def get_VOC_data(file_path):
+    """Returns a VOCData named tuple that contains data from the "VOC Rolling MoM" sheet
+
+    This function determines the column to read from based on the month and year provided by the file name itself
+    """
     logging.debug(f"Parsing VOC from {file_path}")
 
     sheet = util.get_sheet(file_path, "VOC Rolling MoM")
 
-    fileMonth, fileYear = util.get_month_year_from_file_name(file_path)
+    fileMonth, fileYear = util.get_month_year_from_file(file_path)
     col_date = util.get_datetime(fileMonth, fileYear)
 
     # Use the month string from file if the date column does not exist
