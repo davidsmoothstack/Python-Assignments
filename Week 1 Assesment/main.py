@@ -17,7 +17,7 @@ def get_summary_data(file_path):
     date_col_name = sheet.keys()[0]
     date_col = sheet[date_col_name]
 
-    file_date = util.get_date_from_file_name(file_path)
+    file_date = util.get_datetime_from_file_name(file_path)
 
     for row_index, row_date in enumerate(date_col):
         if (row_date.month, row_date.year) == (file_date.month, file_date.year):
