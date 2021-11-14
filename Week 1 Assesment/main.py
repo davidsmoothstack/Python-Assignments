@@ -1,7 +1,4 @@
 import logging
-import sys
-import traceback
-from datetime import datetime
 
 import logger
 import util
@@ -63,5 +60,5 @@ if __name__ == "__main__":
 
         logger.log_summary_data(summary_data)
         logger.log_VOC_data(voc_data)
-    except Exception as e:
-        logging.critical(traceback.format_exception_only(type(e), e))
+    except:
+        logging.exception("")
