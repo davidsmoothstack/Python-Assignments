@@ -34,8 +34,9 @@ def get_summary_data(excel_path):
 
     for row_index, row_date in enumerate(date_col):
         if (row_date.month, row_date.year) == (file_date.month, file_date.year):
-            # Add then return all row columns wrapped in a SummaryData tuple
-            return SummaryData(*excel.iloc[row_index][0::])
+            # Get all the values in the row
+            row_data = list(excel.iloc[row_index])
+            return SummaryData(*row_data)
 
     logging.error("Could not find corresponding month in excel file")
     exit(1)
