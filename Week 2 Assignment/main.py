@@ -3,7 +3,6 @@ import os
 import re
 import sys
 from pathlib import Path
-from numpy import clongdouble
 
 import pandas as pd
 from pandas.core.frame import DataFrame
@@ -63,16 +62,18 @@ def validate_phonenumbers(df: DataFrame, col_name):
 
     for i, number in enumerate(df[col_name]):
         if not regex.match(number):
-            logging.warn(f"Invalid number {number} at row {i}")
+            logging.warning(f"Invalid number {number} at row {i}")
 
 
 def validate_emails(df: DataFrame, col_name):
     pattern = r".+@.+"
-    regex = re.compile(pattern)
+    regex = re.compile(pattern, flags=re.I)
 
     for i, email in enumerate(df[col_name]):
+        x = regex.findall(email)
+
         if not regex.match(email):
-            logging.warn(f"Invalid email {email} at row {i}")
+            logging.warning(f"Invalid email {email} at row {i}")
 
 
 def validate_states(df: DataFrame, col_name):
@@ -80,7 +81,7 @@ def validate_states(df: DataFrame, col_name):
 
     for i, state in enumerate(df[col_name]):
         if state not in valid:
-            logging.warn(f"Invalid state {state} found at row {i}")
+            logging.warning(f"Invalid state {state} found at row {i}")
 
 
 def replace_headers(df: DataFrame):
@@ -124,6 +125,13 @@ if __name__ == "__main__":
         file_df = pd.read_csv(files[-1])
         processed = process_file(file_df)
 
-        print(processed)
+        df_one = file_df[[]]
+
+        df_two = file_df.groupby("Agency State")["Agency State"].count()
+
+        df_three = file_df[[
+            "Agency Name",
+            "Date when an agent became A2O",
+            "Agent Writing Contract Start Date"]]
     except:
         logging.exception("")
