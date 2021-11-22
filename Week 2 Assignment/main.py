@@ -28,6 +28,11 @@ def get_ordered_files(dir_path):
     )
 
 
+def read_file_lines(file_path):
+    with open(file_path) as file:
+        return list(map(lambda line: line.strip(), file.readlines()))
+
+
 def line_diff(path1, path2):
     with open(path1) as file1:
         with open(path2) as file2:
@@ -49,8 +54,7 @@ def write_to_file(file_path, content):
 
 
 def is_processed_file(file_path):
-    with open(file_path) as file:
-        return file_path in file.readlines()
+    return file_path in read_file_lines("NYL.lst")
 
 
 def validate_phonenumbers(df: DataFrame, col_name):
@@ -72,8 +76,7 @@ def validate_emails(df: DataFrame, col_name):
 
 
 def validate_states(df: DataFrame, col_name):
-    # TODO: List all valid states
-    valid = []
+    valid = read_file_lines("states.txt")
 
     for i, state in enumerate(df[col_name]):
         if state not in valid:
@@ -113,8 +116,8 @@ if __name__ == "__main__":
         if variance > 500:
             raise "Line variance is too long. Could not process file"
 
-        if is_processed_file(files[-1]):
-            raise "File is already processed"
+        if is_processed_file(files[-1].as_posix()):
+            raise "File has already been processed"
 
         write_to_file("NYL.lst", files[-1].as_posix())
 
